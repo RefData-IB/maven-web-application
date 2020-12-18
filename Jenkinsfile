@@ -1,5 +1,5 @@
 
-node('node-1')
+node("node-1" && "node-2")
 {
     def mavenHome = tool name: "maven3.6.3"
     properties([[$class: 'JiraProjectProperty'], buildDiscarder(logRotator(artifactDaysToKeepStr: '5', artifactNumToKeepStr: '5', daysToKeepStr: '', numToKeepStr: '5')), [$class: 'JobLocalConfiguration', changeReasonComment: ''], pipelineTriggers([pollSCM('* * * * *')])])
@@ -23,7 +23,7 @@ node('node-1')
     {
         sshagent(['4c2d2a91-d7a4-44bf-8195-795a0f296b87']) 
         {
-        sh "scp -o StrictHostKeyChecking=no target/maven-web-application.war ec2-user@18.219.123.56:/opt/apache-tomcat-9.0.40/webapps/"
+        sh "scp -o StrictHostKeyChecking=no target/maven-web-application.war ec2-user@3.15.15.125:/opt/apache-tomcat-9.0.40/webapps/"
         }
     }
    /* stage('SendEmail')
